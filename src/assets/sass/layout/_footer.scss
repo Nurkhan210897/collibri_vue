@@ -1,0 +1,101 @@
+footer {
+    background-color: #000;
+    padding: 40px 0;
+    .company_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding-top: 70px;
+        p {
+            color: #fff;
+            font-size: 14px;
+        }
+    }
+    .footer_links_title {
+        font-size: 20px;
+        font-family: manrope_bold;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 13px;
+        width: fit-content;
+        color: #fff;
+        margin-bottom: 15px;
+    }
+    ul {
+        padding: 0;
+        li {
+            list-style-type: none;
+            margin-bottom: .7rem;
+            margin-right: -10px;
+            a {
+                color: #fff;
+                display: flex;
+                align-items: baseline;
+                transition: all .3s ease;
+                img {
+                    display: block;
+                    margin-right: 10px;
+                    transition: all .3s ease;
+                }
+                &:hover {
+                    text-decoration: none;
+                    opacity: .7;
+                    color: #fff;
+                    img {
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .footer_social {
+        margin-top: 30px;
+        a {
+            margin-right: 20px;
+        }
+        i {
+            font-size: 30px;
+            color: #fff;
+        }
+        img {
+            width: 30px;
+        }
+    }
+    .company_info {
+        .logo {
+            img {
+                width: 70%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    footer {
+        a {
+            font-size: 14px;
+        }
+        .ya-share2__list.ya-share2__list_direction_horizontal {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 770px) {
+    footer {
+        a {
+            font-size: 14px;
+        }
+        .ya-share2__list.ya-share2__list_direction_horizontal {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 1024px) {
+    footer {
+        a {
+            font-size: 14px;
+        }
+    }
+}

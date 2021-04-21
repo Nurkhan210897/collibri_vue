@@ -1,0 +1,106 @@
+.brands_wrapper {
+    .title_small {
+        text-align: center;
+    }
+    .popular_brands {
+        margin: 45px 0 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        a {
+            transition: all .5s ease;
+            width: 15%;
+            margin: .5%;
+            &:hover {
+                transform: scale(1.1);
+                opacity: .7;
+            }
+        }
+        img {
+            max-width: 160px;
+        }
+    }
+    .brands_list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 40PX;
+        border-bottom: 1px solid #EDEDED;
+        a {
+            color: #000;
+            font-family: manrope_bold;
+            transition: all .5s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            &:hover {
+                transform: scale(1.1);
+                opacity: .8;
+            }
+        }
+    }
+    .brands_wrapper {
+        padding-top: 30px;
+    }
+    .brands_column {
+        padding-top: 20px;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 50px;
+        span {
+            width: 5%;
+            font-family: manrope_bold;
+            text-transform: uppercase;
+        }
+        ul {
+            padding: 0;
+            list-style-type: none;
+            column-count: 4;
+            width: 87%;
+            li {
+                margin-bottom: 20px;
+                font-family: manrope_medium;
+                a {
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .brands_column {
+        ul {
+            padding: 0;
+            list-style-type: none;
+            column-count: 2 !important;
+            width: 90% !important;
+            li {
+                margin-bottom: 20px;
+                font-family: manrope_medium;
+                a {
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .brands_column {
+        ul {
+            padding: 0;
+            list-style-type: none;
+            column-count: 3 !important;
+            width: 90% !important;
+            li {
+                margin-bottom: 20px;
+                font-family: manrope_medium;
+                a {
+                    color: #000;
+                }
+            }
+        }
+    }
+}

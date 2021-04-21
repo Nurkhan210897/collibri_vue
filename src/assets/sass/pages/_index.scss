@@ -1,0 +1,262 @@
+.main_slider {
+    overflow: hidden;
+    max-width: 95%;
+    margin: 0 auto;
+    .slider_item {
+        height: 85vh;
+        background-size: cover;
+        background-position: bottom;
+        .slider_text_wrapper {
+            display: flex;
+            align-items: center;
+        }
+        .slider_text {
+            color: #fff;
+            padding-left: 30px;
+            padding-right: 50px;
+            h2 {
+                font-size: 48px;
+                font-family: manrope_semi_bold;
+            }
+            p {
+                margin-top: 30px;
+                font-size: 24px;
+            }
+        }
+        .btn_outline {
+            margin-top: 50px;
+        }
+    }
+}
+
+.products_category {
+    padding: 100px 0 100px;
+    .card_item {
+        background-color: #F1EFEE;
+        position: relative;
+        height: 250px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        a {
+            width: 100%;
+            height: 100%;
+            color: #000;
+            text-decoration: none;
+            padding: 40px 30px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+                p {
+                    opacity: .6;
+                }
+            }
+            img {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                transition: all .5s ease;
+                z-index: 1;
+            }
+            p {
+                font-family: manrope_bold;
+                font-size: 24px;
+                position: relative;
+                z-index: 2;
+                transition: all .5s ease;
+            }
+        }
+    }
+}
+
+.main_products {
+    .main_products_content {
+        margin-top: 30px;
+    }
+    .btn_black {
+        margin-top: 50px;
+    }
+}
+
+.review_block {
+    background-color: #D0D7D7;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 35%;
+    color: #fff;
+    position: relative;
+    .block_title {
+        h2 {
+            font-size: 48px;
+            line-height: 66px;
+            font-family: manrope_semi_bold;
+            color: #fff;
+        }
+    }
+    .review_info_text {
+        margin: 30px 0;
+        line-height: 27px;
+        font-size: 18px;
+        p {
+            margin-bottom: 30px;
+        }
+    }
+    .review_info {
+        .review_block_bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position-x: right;
+            background-size: contain;
+        }
+    }
+}
+
+.main_blog {
+    padding-bottom: 130px;
+    .blog_title {
+        h2 {
+            font-size: 36px;
+            font-family: manrope_regular;
+            line-height: 49px;
+        }
+    }
+    .main_blog_content {
+        margin-top: 120px;
+    }
+    .main_blog_text {
+        padding-left: 30px;
+        margin: 50px 0;
+        p {
+            font-size: 18px;
+        }
+    }
+    .btn_black {
+        margin: 120px 0 0;
+    }
+    .main_blog_img {
+        text-align: center;
+        position: relative;
+        img {
+            margin-top: 30px;
+            width: 80%;
+        }
+        &::after {
+            content: '';
+            width: 30%;
+            height: 65%;
+            border: 1px solid #9A9A9A;
+            left: 5%;
+            position: absolute;
+            z-index: -1;
+        }
+        &::before {
+            content: '';
+            width: 30%;
+            height: 45%;
+            border: 1px solid #9A9A9A;
+            right: 5%;
+            bottom: -24px;
+            position: absolute;
+            z-index: -1;
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .main_slider {
+        .slick-prev {
+            left: 5% !important;
+            width: 20px !important;
+            height: 20px !important;
+        }
+        .slick-next {
+            right: 5% !important;
+            width: 20px !important;
+            height: 20px !important;
+        }
+        .slider_item {
+            background-position: center;
+            height: 40vh;
+            .slider_text {
+                padding: 0 30px !important;
+                position: static;
+                h2 {
+                    font-size: 30px;
+                }
+                p {
+                    font-size: 16px
+                }
+                ;
+            }
+            .btn_outline {
+                display: block;
+                width: 70%;
+                padding: 12px 0 !important;
+                margin: 80px auto 0;
+                font-size: 14px;
+            }
+        }
+    }
+    .products_category {
+        padding: 40px 0 !important;
+    }
+    .p_block {
+        padding: 40px 0 !important;
+    }
+    .review_block {
+        background-image: none;
+        position: relative;
+    }
+    .review_block_bg {
+        background-image: url('../../assets/images/bg_review.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 40vh;
+        background-size: contain;
+    }
+    .main_blog_content {
+        margin-top: 40px !important;
+    }
+    .review_block {
+        padding-top: 0 !important;
+        .review_info {
+            padding-top: 30px;
+        }
+        .block_title {
+            h2 {
+                font-size: 24px;
+                line-height: 32px;
+            }
+        }
+        .review_info_text {
+            margin: 20px 0;
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+    .main_blog_img.d_none {
+        margin-bottom: 50px;
+    }
+    .review_info {
+        .review_block_bg {
+            display: none;
+        }
+    }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 1024px) {
+    .main_slider .slider_item {
+        height: 88vh;
+    }
+}

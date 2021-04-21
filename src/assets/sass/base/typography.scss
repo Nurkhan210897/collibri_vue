@@ -1,0 +1,129 @@
+@font-face {
+    font-family: manrope_regular;
+    src: url(../../assets/fonts/Manrope-Regular.ttf);
+}
+
+@font-face {
+    font-family: manrope_medium;
+    src: url(../../assets/fonts/Manrope-Medium.ttf);
+}
+
+@font-face {
+    font-family: manrope_bold;
+    src: url(../../assets/fonts/Manrope-Bold.ttf);
+}
+
+@font-face {
+    font-family: manrope_semi_bold;
+    src: url(../../assets/fonts/Manrope-SemiBold.ttf);
+}
+
+p,
+a {
+    font-family: manrope_medium;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+.title h2 {
+    font-size: 24px;
+    line-height: 33px;
+    text-align: center;
+    font-family: manrope_semi_bold;
+}
+
+.title_block h2 {
+    font-size: 24px;
+    line-height: 33px;
+    font-family: manrope_semi_bold;
+}
+
+.title_block p {
+    font-family: manrope_semi_bold;
+}
+
+.title_page h1 {
+    font-size: 36px;
+    font-family: manrope_semi_bold;
+}
+
+.title_center h2 {
+    text-align: center;
+    font-size: 36px;
+    font-family: manrope_semi_bold;
+}
+
+.title_small h1 {
+    font-size: 24px;
+    font-family: manrope_semi_bold;
+}
+
+.p_block {
+    padding: 60px 0;
+}
+
+.silver_text {
+    color: #6B6A6A !important;
+}
+
+.green_text {
+    color: #01A751 !important;
+}
+
+.breadcrumbs {
+    a {
+        color: #6B6A6A;
+        font-size: 18px;
+        text-decoration: none;
+        transition: all .5s ease;
+        &::after {
+            content: '/';
+            margin: 0 15px;
+        }
+        &:last-child {
+            &::after {
+                display: none;
+            }
+        }
+        &:hover {
+            color: #000;
+        }
+    }
+}
+
+.bold_text {
+    font-size: 24px;
+    font-family: manrope_bold;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-width: 8px 6px 0 6px;
+    margin-left: -10px;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-width: 0 6px 8px 6px;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #E5E5E5;
+    color: #000;
+}
+
+@media only screen and (max-width: 576px) {
+    .title_page {
+        h1 {
+            font-size: 24px;
+        }
+    }
+    .breadcrumbs {
+        a {
+            &::after {
+                content: '/';
+                margin: 0 5px;
+            }
+        }
+    }
+}

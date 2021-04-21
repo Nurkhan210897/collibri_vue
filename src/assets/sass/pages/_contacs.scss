@@ -1,0 +1,105 @@
+.contacts_date {
+    margin-top: 50px;
+    .row {
+        justify-content: space-between;
+    }
+    .contacts_info {
+        p {
+            font-size: 22px;
+            line-height: 30px;
+        }
+    }
+    ul {
+        padding: 0;
+        margin: 70px 0 0 0;
+        li {
+            list-style-type: none;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            img {
+                margin-right: 10px;
+            }
+            a {
+                color: #000;
+                font-size: 20px;
+            }
+        }
+    }
+    .socials {
+        i {
+            font-size: 30px;
+            color: #000;
+        }
+        a {
+            margin-right: 20px;
+            transition: all .5s ease;
+            img {
+                width: 40px;
+                height: 40px;
+            }
+            &:hover {
+                opacity: .7;
+            }
+        }
+    }
+}
+
+.contacts_form {
+    margin-top: -80px;
+    .title {
+        h2 {
+            font-size: 32px;
+            font-family: manrope_medium;
+        }
+    }
+    form {
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid #000;
+            padding: 14px 30px;
+            margin-top: 20px;
+            &::placeholder {
+                color: #000;
+            }
+        }
+        textarea {
+            height: 120px;
+        }
+        .btn_black {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .contacts {
+        .title_small {
+            text-align: center;
+        }
+        .contacts_date {
+            margin-top: 20px;
+            .contacts_info {
+                p {
+                    font-size: 14px;
+                    line-height: 24px;
+                }
+            }
+        }
+        .contacts_form {
+            margin-top: 60px !important;
+            .title {
+                h2 {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .contacts_form {
+        margin-top: 60px;
+    }
+}

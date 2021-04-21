@@ -1,0 +1,76 @@
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1160px !important;
+    }
+}
+
+.custom-checkbox>input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-checkbox>span {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.custom-checkbox>span::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.custom-checkbox>input:not(:disabled):not(:checked)+span:hover::before {
+    border-color: #000;
+    background-color: #ccc;
+}
+
+.custom-checkbox>input:not(:disabled):active+span::before {
+    background-color: #000;
+    border-color: #000;
+}
+
+.custom-checkbox span:hover {
+    &::before {
+        opacity: .8;
+    }
+}
+
+.custom-checkbox>input:focus:not(:checked)+span::before {
+    border-color: #000;
+}
+
+.custom-checkbox>input:checked+span::before {
+    border-color: #000;
+    background-color: #000;
+}
+
+.custom-checkbox>input:disabled+span::before {
+    background-color: #e9ecef;
+}
+
+// scrollbar
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 9em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #253861;
+}
