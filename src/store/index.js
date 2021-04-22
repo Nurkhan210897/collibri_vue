@@ -89,9 +89,11 @@ export default new Vuex.Store({
         GET_PRODUCTS({ commit, state }, id) {
             state.loader = true
             axios
-                .post(`${state.apiUrl}get-products`, {
-                    lang: state.lang,
-                    category_id: id
+                .get(`${state.apiUrl}get-products`, {
+                    params: {
+                        lang: state.lang,
+                        category_id: id
+                    }
                 })
                 .then(function(response) {
                     const products = response.data;
@@ -105,9 +107,11 @@ export default new Vuex.Store({
         GET_BRAND_PRODUCTS({ commit, state }, id) {
             state.loader = true
             axios
-                .post(`${state.apiUrl}get-brand-products`, {
-                    lang: state.lang,
-                    brand_id: id
+                .get(`${state.apiUrl}get-brand-products`, {
+                    params: {
+                        lang: state.lang,
+                        brand_id: id
+                    }
                 })
                 .then(function(response) {
                     const products = response.data;
@@ -118,13 +122,14 @@ export default new Vuex.Store({
                 });
         },
 
-
-        FILTER_BRAND_PRODUCTS({ commit, state }, { productId, filterId }) {
-            let filter_id = filterId;
-            axios.post(`${state.apiUrl}get-brand-products`, {
-                    lang: state.lang,
-                    category_id: productId,
-                    filter_id: filter_id,
+        FILTER_BRAND_PRODUCTS({ commit, state }, { productId, brandId }) {
+            let brand_id = brandId;
+            axios.get(`${state.apiUrl}get-brand-products`, {
+                    params: {
+                        lang: state.lang,
+                        brand_id: productId,
+                        filter_id: brand_id,
+                    }
                 })
                 .then((response) => {
                     const products = response.data;
@@ -138,10 +143,12 @@ export default new Vuex.Store({
         FILTER_PRODUCTS({ commit, state }, { productId, filterId }) {
             let filter_id = filterId;
             state.loadingProducts = true
-            axios.post(`${state.apiUrl}get-products`, {
-                    lang: state.lang,
-                    category_id: productId,
-                    filter_id: filter_id,
+            axios.get(`${state.apiUrl}get-products`, {
+                    params: {
+                        lang: state.lang,
+                        category_id: productId,
+                        filter_id: filter_id,
+                    }
                 })
                 .then((response) => {
                     const products = response.data;
@@ -169,10 +176,12 @@ export default new Vuex.Store({
         MORE_PRODUCTS({ commit, state }, { productId, page }) {
             state.moreLoader = true,
                 axios
-                .post(`${state.apiUrl}get-products`, {
-                    lang: state.lang,
-                    category_id: productId,
-                    page: page
+                .get(`${state.apiUrl}get-products`, {
+                    params: {
+                        lang: state.lang,
+                        category_id: productId,
+                        page: page
+                    }
                 })
                 .then(function(response) {
                     state.moreLoader = null;
@@ -183,25 +192,31 @@ export default new Vuex.Store({
         },
 
         MORE_BRAND_PRODUCTS({ commit, state }, { productId, page }) {
-            axios
-                .post(`${state.apiUrl}get-brand-products`, {
-                    lang: state.lang,
-                    category_id: productId,
-                    page: page
+            state.moreLoader = true,
+                axios
+                .get(`${state.apiUrl}get-brand-products`, {
+                    params: {
+                        lang: state.lang,
+                        brand_id: productId,
+                        page: page
+                    }
                 })
                 .then(function(response) {
                     const products = response.data;
-                    console.log(products);
+                    state.moreLoader = null;
+                    state.nextPage = products.products.next_page_url;
 
                     commit('MORE_PRODUCTS', products)
                 });
         },
 
         SORTED_PRODUCTS({ commit, state }, { productId, sortedProduct }) {
-            axios.post(`${state.apiUrl}get-products`, {
-                    lang: state.lang,
-                    category_id: productId,
-                    order_by: sortedProduct,
+            axios.get(`${state.apiUrl}get-products`, {
+                    params: {
+                        lang: state.lang,
+                        category_id: productId,
+                        order_by: sortedProduct,
+                    }
                 })
                 .then((response) => {
                     const products = response.data;

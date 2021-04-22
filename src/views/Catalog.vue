@@ -46,84 +46,7 @@
         <div class="catalog_content" v-if="GET_PRODUCTS">
           <div class="row">
             <div class="col-xl-3 col-md-4">
-              <button class="btn btn_outline_dark d_none" @click="toggleFilter">
-                Показать фильтры
-              </button>
-              <div
-                class="products_select_wrapper products_select_mobile d_none"
-                v-if="productCategory"
-              >
-                <span class="close_btn" @click="productCategory = false"
-                  ><img src="@/assets/images/close.svg" alt=""
-                /></span>
-                <div
-                  class="category_select"
-                  v-for="item in CATEGORY_PRODUCTS.filters.slice(
-                    0,
-                    categoryCount
-                  )"
-                  :key="item.id"
-                >
-                  <div v-if="item.filter_items.length">
-                    <p class="bold_text">{{ item.title }}</p>
-                    <ul>
-                      <li v-for="filter in item.filter_items" :key="filter.id">
-                        <label class="custom-checkbox">
-                          <input
-                            type="checkbox"
-                            :value="Number(filter.id)"
-                            v-model="filter_id"
-                            @change="addFilter"
-                          />
-                          <span>{{ filter.title }}</span>
-                        </label>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  @click.prevent="allCategories"
-                  v-if="CATEGORY_PRODUCTS.filters.length > 3"
-                  >{{ allCategoriesText }}</a
-                >
-              </div>
-              <div
-                class="products_select_wrapper products_select_mobile m_none"
-              >
-                <span class="close_btn" alt=""></span>
-                <div
-                  class="category_select"
-                  v-for="item in CATEGORY_PRODUCTS.filters.slice(
-                    0,
-                    categoryCount
-                  )"
-                  :key="item.id"
-                >
-                  <div v-if="item.filter_items.length">
-                    <p class="bold_text">{{ item.title }}</p>
-                    <ul>
-                      <li v-for="filter in item.filter_items" :key="filter.id">
-                        <label class="custom-checkbox">
-                          <input
-                            type="checkbox"
-                            :value="Number(filter.id)"
-                            v-model="filter_id"
-                            @change="addFilter"
-                          />
-                          <span>{{ filter.title }}</span>
-                        </label>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  @click.prevent="allCategories"
-                  v-if="CATEGORY_PRODUCTS.filters.length > 3"
-                  >{{ allCategoriesText }}</a
-                >
-              </div>
+              <category-select :categories="CATEGORY_PRODUCTS" type="filter_id"/>
             </div>
             <div class="col-xl-9 col-md-8">
               <div v-if="filteredProducts().products.data.length">
@@ -180,12 +103,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import CategorySelect from '../components/categorySelect.vue';
 import productCard from "./../components/productCard";
 
 export default {
-  components: { productCard },
+  components: { productCard, CategorySelect },
   data: () => ({
-    productCategory: null,
     lang: "ru",
     paramUrl: null,
     imgUrl: null,
@@ -221,7 +144,7 @@ export default {
     },
 
     filteredProducts() {
-      if (this.filter_id.length) {
+      if (this.CATALOG_FILTER.products) {
         return this.CATALOG_FILTER;
       } else {
         return this.CATEGORY_PRODUCTS;

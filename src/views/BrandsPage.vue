@@ -26,71 +26,12 @@
       <div class="catalog_content">
         <div class="row">
           <div class="col-xl-3 col-md-4">
-            <button class="btn btn_outline_dark d_none" @click="toggleFilter">
-              Показать фильтры
-            </button>
-            <div
-              class="products_select_wrapper products_select_mobile d_none"
-              v-if="productCategory"
-            >
-              <span class="close_btn" @click="productCategory = false"
-                ><img src="@/assets/images/close.svg" alt=""
-              /></span>
-              <div
-                class="category_select"
-                v-for="item in BRAND_PRODUCTS.filters"
-                :key="item.id"
-              >
-                <div v-if="item.filter_items.length">
-                  <p class="bold_text">{{ item.title }}</p>
-                  <ul>
-                    <li v-for="filter in item.filter_items" :key="filter.id">
-                      <label class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          :value="Number(filter.id)"
-                          v-model="filter_id"
-                          @change="addFilter"
-                        />
-                        <span>{{ filter.title }}</span>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <a href="#">Показать еще</a>
-            </div>
-            <div class="products_select_wrapper products_select_mobile m_none">
-              <span class="close_btn" alt=""></span>
-              <div
-                class="category_select"
-                v-for="item in BRAND_PRODUCTS.filters"
-                :key="item.id"
-              >
-                <div v-if="BRAND_PRODUCTS.filters">
-                  <p class="bold_text">{{ item.title }}</p>
-                  <ul>
-                    <li v-for="filter in item.filter_items" :key="filter.id">
-                      <label class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          :value="Number(filter.id)"
-                          v-model="filter_id"
-                          @change="addFilter"
-                        />
-                        <span>{{ filter.title }}</span>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <a href="#">Показать еще</a>
-            </div>
+            <category-select :categories="BRAND_PRODUCTS" type="brand_id" />
           </div>
           <div class="col-xl-9 col-md-8">
             <div
               class="catalog_products"
-              v-if="filteredProducts().products.data"
+              v-if="filteredProducts().products.data.length"
             >
               <div class="row">
                 <div
@@ -101,13 +42,19 @@
                   <productCard :productCard="card"></productCard>
                 </div>
               </div>
-              <button
+              <a
+                :href="nextPageUrl"
                 class="btn btn_black"
-                v-if="showMorebtn"
-                @click="showMore"
+                v-if="
+                  this.filteredProducts().products.last_page !== 1 &&
+                    page !== this.filteredProducts().products.last_page
+                "
+                @click.prevent="showMore"
+                :class="{ disabled: moreLoader !== null }"
               >
-                Показать еще
-              </button>
+                {{ moreLoaderShow }}
+                <div class="loader" v-if="moreLoader !== null"></div>
+              </a>
             </div>
             <div v-else>
               <h2>В данной категорий нет продуктов!</h2>
@@ -122,9 +69,10 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import productCard from "./../components/productCard";
+import CategorySelect from "../components/categorySelect.vue";
 
 export default {
-  components: { productCard },
+  components: { productCard, CategorySelect },
 
   data: () => ({
     brandData: null,
@@ -132,6 +80,8 @@ export default {
     productCategory: null,
     page: 1,
     showMorebtn: false,
+    moreLoader: null,
+    nextPage: null,
   }),
 
   methods: {
@@ -145,7 +95,7 @@ export default {
     ]),
 
     filteredProducts() {
-      if (this.filter_id.length) {
+      if (this.CATALOG_FILTER.products) {
         return this.CATALOG_FILTER;
       } else {
         return this.BRAND_PRODUCTS;
@@ -157,7 +107,7 @@ export default {
       let allFilterId = this.filter_id;
       this.FILTER_BRAND_PRODUCTS({
         productId: productUrl,
-        filterId: allFilterId,
+        brandId: allFilterId,
       });
     },
 
@@ -169,8 +119,9 @@ export default {
       let productUrl = this.$route.params.id;
       let lastPage = this.filteredProducts().products.last_page;
       console.log(lastPage);
-      if (this.page <= lastPage) {
+      if (this.page < lastPage) {
         this.page++;
+        console.log(this.page);
       }
       if (this.page === lastPage) {
         this.showMorebtn = false;
@@ -181,12 +132,30 @@ export default {
 
   computed: {
     ...mapGetters(["BRAND_PRODUCTS", "CATALOG_FILTER"]),
+
+    nextPageUrl() {
+      let nextPageStore = this.$store.state.nextPage;
+      return !nextPageStore
+        ? (this.nextPage = this.BRAND_PRODUCTS.products.next_page_url)
+        : (this.nextPage = this.$store.state.nextPage);
+    },
+
+    moreLoaderShow() {
+      this.moreLoader = this.$store.state.moreLoader;
+      if (!this.moreLoader) {
+        return "Показать еще";
+      } else {
+        return "";
+      }
+    },
   },
 
   mounted() {
+    this.CATALOG_FILTER.products = null;
     let productUrl = this.$route.params.id;
     this.GET_BRAND_PRODUCTS(productUrl);
     this.brandData = this.BRAND_PRODUCTS;
   },
+
 };
 </script>

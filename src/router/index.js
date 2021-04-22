@@ -46,8 +46,8 @@ const routes = [{
             import ('../views/Brands.vue')
     },
     {
-        path: '/BrandsPage/:slug&id=:id',
-        name: 'BrandsPage',
+        path: '/brands-inner/:slug&id=:id',
+        name: 'brand-products',
         component: () =>
             import ('../views/BrandsPage.vue')
     },
